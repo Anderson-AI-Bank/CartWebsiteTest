@@ -1,13 +1,12 @@
 class LoginPage {
-   
   constructor(page) {
-    this.page =page;
-    this.userName = page.locator("[id*='username']"); 
+    this.page = page;
+    this.userName = page.locator("[id*='username']");
     this.password = page.locator("[id*='password']");
     this.signInButton = page.locator("login-button");
     this.pageLogo = page.locator(
-        '//div[@class="login_logo" and text()="Swag Labs"]',
-      );
+      '//div[@class="login_logo" and text()="Swag Labs"]',
+    );
   }
   async goTo() {
     await this.page.goto("https://www.saucedemo.com/");
@@ -22,4 +21,4 @@ class LoginPage {
     await this.signInButton.click();
   }
 }
-module.exports = {LoginPage}
+module.exports = { LoginPage };

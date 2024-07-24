@@ -7,6 +7,9 @@ test("Test to verify login page for cart website", async ({page}) => {
   const loginPage = new LoginPage(page);
 
   await loginPage.goTo();
+  await loginPage.enterLoginDetails(userName,password);
+  await loginPage.selectSignIn();
+
 
 });
 
