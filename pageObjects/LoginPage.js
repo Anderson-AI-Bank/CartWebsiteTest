@@ -1,25 +1,25 @@
 class LoginPage {
+   
+  constructor(page) {
+    this.page =page;
+    this.userName = page.locator("[id*='username']"); 
+    this.password = page.locator("[id*='password']");
+    this.signInButton = page.locator("login-button");
+    this.pageLogo = page.locator(
+        '//div[@class="login_logo" and text()="Swag Labs"]',
+      );
+  }
+  async goTo() {
+    await this.page.goto("https://www.saucedemo.com/");
+  }
 
-constructor ()
-{
-    this.page = page;
-    userName = this.userName.getByTestId ('username');
-    password = this.password.getByTestId('password');
-    signInButton = this.signInButton.getByTestId('login-button');
-    pageLogo = this.locator(locator = page.locator('//div[@class="login_logo" and text()="Swag Labs"]'));
-}
-
-async goTo()
-{
-    await this.page.goTo("https://www.saucedemo.com/")
-}
-
-async ValidLogIn(userName,password)
-{
+  async enterLoginDetails(userName, password) {
     await this.userName.type(userName);
     await this.password.type(password);
-    await this.signInButton.click();
-}
+  }
 
+  async selectSignIn() {
+    await this.signInButton.click();
+  }
 }
-module.exports = {LoginPage};
+module.exports = {LoginPage}
