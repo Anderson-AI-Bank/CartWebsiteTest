@@ -27,5 +27,6 @@ class LandingPage {
   async navigateToCart() {
     await this.shoppingCardLink.click();
   }
+  
 }
-module.exports = { LandingPage };
+export default { LandingPage };
