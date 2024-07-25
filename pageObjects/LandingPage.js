@@ -29,4 +29,4 @@ class LandingPage {
   }
   
 }
-export default { LandingPage };
+module.exports = {LandingPage};
