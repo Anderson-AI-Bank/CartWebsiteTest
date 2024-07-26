@@ -9,7 +9,7 @@ class LoginPage {
 
   constructor(page: Page) {
     this.page = page;
-    this.userName = page.locator("[id*='username']");
+    this.userName = page.locator("[id*='user-name']");
     this.password = page.locator("[id*='password']");
     this.signInButton = page.locator("#login-button");
     this.pageLogo = page.locator(
@@ -23,12 +23,15 @@ class LoginPage {
 
   async enterLoginDetails(userName: string, password: string): Promise<void> {
     await this.userName.fill(userName);
-
     await this.password.fill(password);
+    await this.page.waitForLoadState('networkidle');
   }
 
   async selectSignIn(): Promise<void> {
     await this.signInButton.click();
+  }
+  async pageLogovisble(): Promise<void> {
+    await this.pageLogo.isVisible();
   }
 }
 
