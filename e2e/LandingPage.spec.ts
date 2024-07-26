@@ -13,7 +13,7 @@ test.describe('Landing Page Tests', () => {
     
   });
 
-  test.only('should add product to cart', async () => {
+  test('should add product to cart', async () => {
     const landingPage = poManager.getLandingPage();
     const cartPage = poManager.getCartPage();
     const cartItem = await page.locator('.cart_item .inventory_item_name').allTextContents();
