@@ -22,8 +22,7 @@ test.describe('Login Page Tests', () => {
   test('should show error for invalid login', async () => {
     const loginPage = poManager.getLoginPage();
     await loginPage.goTo();
-    await loginPage.enterLoginDetails('invalid_user', 'invalid_password');
-    const errorMessage = await page.locator('.error-message-container').textContent();
-    expect(errorMessage).toContain('Epic sadface');
+    await loginPage.enterLoginDetails('error_user', 'secret_sauce');
+    expect.soft(loginPage.readerrorMessage).toBe('Epic sadface: Username and password do not match any user in this service');
   });
 });

@@ -14,7 +14,7 @@ class LandingPage {
     this.products = page.locator('.inventory_container');
     this.productText = page.locator('.inventory_item_name');
     this.burgerMenu = page.locator('[id*=react-burger-menu-btn]');
-    this.shoppingCardLink = page.locator('.shopping_cart_link');
+    this.shoppingCardLink = page.locator('[id*=shopping_cart_container]');
     this.addToCartBtn = page.locator('.btn.btn_primary.btn_small.btn_inventory');
     this.addSlbBackPack = page.locator('[id*=add-to-cart-sauce-labs-backpack]')
     this.productDesc = page.locator('.inventory_item_description')

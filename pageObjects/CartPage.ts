@@ -9,9 +9,10 @@ class CartPage {
   private checkOutBtn: Locator;
   private cartListTable: Locator;
 
+
   constructor(page: Page) {
     this.page = page;
-    this.continueShopppingBtn = page.locator("[id*='continue-shopping']");
+    this.continueShopppingBtn = page.locator('[id*="continue-shopping"]');
     this.itemDescription = page.locator(".inventory_item_desc");
     this.itemName = page.locator('.inventory_item_name');
     this.itemPrice = page.locator(".item_pricebar");
@@ -26,8 +27,8 @@ class CartPage {
      this.itemDescription;
   }
 
-  async selectitemName(): Promise<string | null> {
-    return await this.itemName.textContent();
+  async selectitemName(): Promise<string[] | null> {
+    return await this.itemName.allTextContents();
   }
   async selectCartListTable(): Promise<string[] | null> {
     return await this.cartListTable.allTextContents();
@@ -38,6 +39,9 @@ class CartPage {
   }
   async selectCheckout(): Promise<void> {
     await this.checkOutBtn.click();
+  }
+  async readCheckout(): Promise<void> {
+    await this.checkOutBtn.isVisible();
   }
 }
 

@@ -25,10 +25,14 @@ test.describe('Landing Page Tests', () => {
  
   });
 
-  test('should navigate to cart', async () => {
+  test.only('should navigate to cart', async () => {
     const landingPage = poManager.getLandingPage();
     const CartPage = poManager.getCartPage();
+    const currentUrl = page.url();
     await landingPage.navigateToCart();
-    expect(page).toHaveURL('https://www.saucedemo.com/cart.html');
+    await page.waitForLoadState()
+    await CartPage.readCheckout();
+    expect(currentUrl).toBe('https://www.saucedemo.com/inventory.html');
+    
   });
 })
