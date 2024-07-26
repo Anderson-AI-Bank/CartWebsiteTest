@@ -27,12 +27,19 @@ class LoginPage {
     await this.page.waitForLoadState('networkidle');
   }
 
-  async selectSignIn(): Promise<void> {
+  async btnSignIn(): Promise<void> {
     await this.signInButton.click();
   }
   async pageLogovisble(): Promise<void> {
     await this.pageLogo.isVisible();
   }
+  async logInAndSignin(userName: string, password: string): Promise<void> {
+    await this.userName.fill(userName);
+    await this.password.fill(password);
+    await this.page.waitForLoadState('networkidle');
+    await this.signInButton.click();
+}
+
 }
 
 export { LoginPage };

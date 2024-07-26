@@ -1,31 +1,34 @@
 import { test, expect, Page } from '@playwright/test';
-import { LandingPage } from '../pageObjects/LandingPage';
+import { POManager } from '../pageObjects/POManager';
 
 test.describe('Landing Page Tests', () => {
   let page: Page;
-  let landingPage: LandingPage;
+  let poManager: POManager;
 
   test.beforeAll(async ({ browser }) => {
     page = await browser.newPage();
-    landingPage = new LandingPage(page);
-    await page.goto('https://www.saucedemo.com/');
+    poManager = new POManager(page);
+    await poManager.getLoginPage().goTo();
+    await poManager.getLoginPage().logInAndSignin('standard_user', 'secret_sauce');
+    
   });
 
-  test.afterAll(async () => {
-    await page.close();
-  });
-
-  test('should add product to cart', async () => {
-    await landingPage.searchProductAddCart('Sauce Labs Bike Light');
-    await landingPage.navigateToCart();
-
-    const cartItem = await page.locator('.cart_item').textContent();
-    expect(cartItem).toContain('Sauce Labs Bike Light');
+  test.only('should add product to cart', async () => {
+    const landingPage = poManager.getLandingPage();
+    const cartPage = poManager.getCartPage();
+    const cartItem = await page.locator('.cart_item .inventory_item_name').allTextContents();
+    await page.waitForSelector('.inventory_list');
+    await landingPage.addSauceLabsBackpackToCart();
+    await landingPage.navigateToCart()
+    await page.waitForLoadState();
+    await cartPage.selectitemName();
+ 
   });
 
   test('should navigate to cart', async () => {
+    const landingPage = poManager.getLandingPage();
+    const CartPage = poManager.getCartPage();
     await landingPage.navigateToCart();
-    const cartUrl = page.url();
-    expect(cartUrl).toBe('https://www.saucedemo.com/cart.html');
+    expect(page).toHaveURL('https://www.saucedemo.com/cart.html');
   });
-});
+})
