@@ -16,7 +16,7 @@ class LoginPage {
     this.pageLogo = page.locator(
       '//div[@class="login_logo" and text()="Swag Labs"]',
     );
-    this.errorMessage = page.locator('.error-message-container error')
+    this.errorMessage = page.locator('[data-test="error"]');
   }
 
   async goTo(): Promise<void> {
@@ -41,7 +41,7 @@ class LoginPage {
     await this.page.waitForLoadState('networkidle');
     await this.signInButton.click();
 }
-async readerrorMessage(): Promise<string | null> {
+async getErrorMessage(): Promise<string | null> {
     return await this.errorMessage.textContent();
   }
 

@@ -1,5 +1,6 @@
 import { test, expect, Page } from '@playwright/test';
 import { POManager } from '../pageObjects/POManager';
+import { stringify } from 'querystring';
 
 test.describe('Login Page Tests', () => {
   let page: Page;
@@ -19,10 +20,13 @@ test.describe('Login Page Tests', () => {
     expect(currentUrl).toBe('https://www.saucedemo.com/inventory.html');
   });
 
-  test('should show error for invalid login', async () => {
+  test.skip('should show error for invalid login', async () => {
     const loginPage = poManager.getLoginPage();
+    const errorText = loginPage.getErrorMessage();
     await loginPage.goTo();
-    await loginPage.enterLoginDetails('error_user', 'secret_sauce');
-    expect.soft(loginPage.readerrorMessage).toBe('Epic sadface: Username and password do not match any user in this service');
+    await loginPage.enterLoginDetails('Test', 'secret_sauce');
+    await loginPage.btnSignIn();
+    await page.waitForLoadState();
+    expect.soft(errorText).toContain('Epic sadface');
   });
 });

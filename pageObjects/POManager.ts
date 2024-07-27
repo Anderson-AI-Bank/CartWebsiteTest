@@ -4,6 +4,7 @@ import { LoginPage } from './LoginPage';
 import { CartPage } from './CartPage';
 
 class POManager {
+ 
   private page: Page;
   private landingPage: LandingPage;
   private loginPage: LoginPage;

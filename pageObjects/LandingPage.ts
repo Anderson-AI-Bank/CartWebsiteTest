@@ -25,22 +25,22 @@ class LandingPage {
     console.log(titles);
     const count: number = await this.products.count();
 
-    for (let i = 0; i < count; ++i) {
-      const productText: string | null = await this.products.nth(i).locator('.inventory_item_name').textContent();
-      if (productText?.trim() === productName) {
+for (let i = 0; i < count; ++i) {
+const productText: string | null = await this.products.nth(i).locator('.inventory_item_name').textContent();
+if (productText?.trim() === productName) {
         // Add to cart
-        await this.products.nth(i).locator('text="Add to cart"').click();
+await this.products.nth(i).locator('text="Add to cart"').click();
         break;
       }
     }
   }
   
-  async addSauceLabsBackpackToCart(): Promise<void> {
-    await this.addSlbBackPack.click();
+async addSauceLabsBackpackToCart(): Promise<void> {
+await this.addSlbBackPack.click();
   }
 
-  async navigateToCart(): Promise<void> {
-    await this.shoppingCardLink.click();
+async navigateToCart(): Promise<void> {
+await this.shoppingCardLink.click();
   }
   async selectaddToCartBtn(): Promise<void> {
     await this.addToCartBtn.click();
